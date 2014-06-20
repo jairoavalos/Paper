@@ -10,6 +10,11 @@
 
 @interface MainViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *headline;
+
+- (IBAction)onDragHeadline:(UIPanGestureRecognizer *)sender;
+@property (assign, nonatomic) CGPoint offset;
+
 @end
 
 @implementation MainViewController
@@ -38,7 +43,9 @@
       [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
   
-  
+    // Set the headline to be draggable
+    self.headline.userInteractionEnabled = YES;
+    
     // Set up scroll view
   UIImageView *newsFeed = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"news"]];
   
@@ -63,4 +70,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (IBAction)onDragHeadline:(UIPanGestureRecognizer *)sender {
+    NSLog(@"dragged");
+}
 @end
