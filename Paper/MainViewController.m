@@ -33,6 +33,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
   
+    
+            CGPoint viewOriginCorner = CGPointMake(self.headline.frame.origin.x, self.headline.frame.origin.y);
+    NSLog(@"%f, %f", viewOriginCorner.x, viewOriginCorner.y);
   
     // Hide status bar
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
@@ -72,6 +75,23 @@
 
 
 - (IBAction)onDragHeadline:(UIPanGestureRecognizer *)sender {
-    NSLog(@"dragged");
+    CGPoint touchPosition = [sender locationInView:self.view];
+    float origTouchPositionY;
+    float originalHeadlineY;
+    float offset;
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        origTouchPositionY = touchPosition.y;
+        NSLog(@"origtouchY:%f", origTouchPositionY);
+        originalHeadlineY = self.headline.center.y + 3.5;
+        NSLog(@"origHeadlineY:%f", originalHeadlineY);
+
+    } else if (sender.state == UIGestureRecognizerStateChanged) {
+
+        NSLog(@"new y:%f", touchPosition.y);
+        offset = touchPosition.y - origTouchPositionY;
+        NSLog(@"offset:%f", offset);
+        self.headline.center = CGPointMake(self.view.frame.size.width/2, originalHeadlineY + offset);
+        NSLog(@"changedHeadlineY:%f", self.headline.center.y);
+    }
 }
 @end
