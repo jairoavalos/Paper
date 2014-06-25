@@ -447,6 +447,7 @@
 				86BFDA831952C34C00189609 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		86BFDA841952C34C00189609 /* Build configuration list for PBXNativeTarget "PaperTests" */ = {
 			isa = XCConfigurationList;
@@ -455,6 +456,7 @@
 				86BFDA861952C34C00189609 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

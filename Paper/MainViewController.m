@@ -17,6 +17,9 @@
 @property (assign, nonatomic) CGPoint offset;
 @property (assign, nonatomic) float origTouchPositionY;
 @property (assign, nonatomic) float originalHeadlineY;
+@property UIScrollView *newsScrollView;
+@property UIPanGestureRecognizer *pgr;
+
 
 @end
 
@@ -59,20 +62,16 @@
     // Set up scroll view with news feed
     UIImageView *newsFeed = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"news"]];
   
-    UIScrollView *newsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 321, 320, 254)];
-    newsScrollView.contentSize = CGSizeMake([UIImage imageNamed:@"news"].size.width, newsFeed.frame.size.height);
-    [newsScrollView setShowsHorizontalScrollIndicator:NO];
-
-    //UIPanGestureRecognizer *pgr = [[UIPanGestureRecognizer alloc]
-      //                             initWithTarget:self action:@selector(feedScaled:)];
-    //[newsScrollView addGestureRecognizer:pgr];
+    self.newsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 321, 320, 254)];
+    self.newsScrollView.contentSize = CGSizeMake([UIImage imageNamed:@"news"].size.width, newsFeed.frame.size.height);
+    [self.newsScrollView setShowsHorizontalScrollIndicator:NO];
     
     // add the news feed to the scrollview
-  [newsScrollView addSubview:newsFeed];
+    [self.newsScrollView addSubview:newsFeed];
   
     
-  // add the scrollview to the headline view
-  [self.headline addSubview:newsScrollView];
+    // add the scrollview to the headline view
+    [self.headline addSubview:self.newsScrollView];
   
 }
 
@@ -82,11 +81,6 @@
 
 
 
--(IBAction)feedScaled:(UIPanGestureRecognizer *)sender {
-    
-    NSLog(@"tried to scale the feed!");
-    
-}
 
 - (void)didReceiveMemoryWarning
 {
